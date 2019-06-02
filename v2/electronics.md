@@ -44,6 +44,7 @@ Please keep in mind that the Housing is not prepared for mounting this sensor. Y
 
 
 ## Connecting a Raspberry to the Wemos via Serial
+***Alternative of CORE Setup:***  
 If you have problems, stuttering with the WifiConnection, or just dont want to use Wifi from Server to Matrix you can use the Serial Connection to transmit the Data to the Matrix.
 
 First you need to activate Serial communication in the AWTRIXController Firmware by uncomment //#define USB_CONNECTION
@@ -52,14 +53,15 @@ You can use the **USB Port** of the Pi (Also for any other Serverplatform).
 by simply connect ja microUSB cable from Raspberry to the Wemos D1. Then you need to enable USBMatrix in the settingsmenu via webinterface and set the USBPort to **/dev/ttyUSB0** (Thats the default port for Raspberry). Then restart the Server.
 
   
-You are also able to use the **GPIO´s** to connect the Pi to the Wemos:
-  
-| Raspberry Pin | WEmos|
-| --- | --- |
-|04 5V |5V|
-|06 GND|GND|
-|08 TXD|RX|
-|10 RXD|TX|
+You are also able to use the **GPIO´s** to connect the Pi to the Wemos:  
+![image alt text](assets/AWTRIX_raspi_V2_Steckplatine.jpg)  
+
+|Wemos | Raspberry Pin-No | Function |
+| --- | --- | --- |
+|5V|04 - 5V | 5V Power|
+|GND|06 - GND| Ground|
+|RX|08 - TXD| Transmit|
+|TX|10 - RXD| Receive|  
 
 Then you need enable the Serial Pins by putting the folliwing line to
 File /boot/config.txt   
