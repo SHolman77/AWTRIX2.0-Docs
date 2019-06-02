@@ -8,7 +8,7 @@ For the REST API the base endpoint is
 
 e.g. for a simple test on Raspberry Pi curl can be used to submit a http request:  
 
-```curl --header "Content-Type: application/json" --request POST --data {"msgShort":"Hello World"} http://[AWTRIX-SERVER_IP]:7000/api/v3/basics ```
+```curl --header "Content-Type: application/json" --request POST --data {"power": false} http://[AWTRIX-SERVER_IP]:7000/api/v3/basics ```
 
 ## Basic Controls
 
@@ -42,7 +42,7 @@ Switch to the defined App
 - switchTo: Appname
 
 ``` JSON
-{"switchTo":"facebook"}
+{"switchTo":"Facebook"}
 ```
 ___
 
@@ -74,48 +74,19 @@ Controls the Apploop
 {"app":"next"}
 ```
 ___
-### msgShort
 
-Scrolls the given text once
+### showAnimation
 
-**Params**  
-- msgShort: Textstring
+Shows a random animation, downloaded from AWTRIX cloud
 
-``` JSON
-{"msgShort":"Hello World"}
-```
-___
-### msgEndless
-
-Scrolls the given text endless
-
-**Params**  
-- msgEndless: Textstring
+**Params** 
+- showAnimation
 
 ``` JSON
-{"msgEndless":"Hello World"}
+{"showAnimation":"random"}
 ```
 ___
-### msgColor
 
-Changes the color of the scrolling Text
-
-**Params**  
-- msgColor: Array of Integer [R,G,B]
-
-``` JSON
-{"msgColor":[255,0,0]}
-```
-
-___
-### msgStop
-
-Stop message scrolling
-
-``` JSON
-{"msgStop":true}
-```
-___
 ### play
 
 Plays an audiofile which was loaded on the SD-card of the DF Player.
@@ -133,7 +104,7 @@ Folder:15; File:4
 =  
 SD:/15/004.mp3  
 ___
-___
+
 ### timer
 
 Starts a timer for the given timespan and shows an alert when the time has expired.
@@ -165,6 +136,22 @@ You can define a custom icon. If the stopwatch reaches 1 hour it will remove the
 {"stopwatch":false} 
 ```
 ___
+
+### AppList
+
+This API let you customize your App Loop
+
+**Params** 
+- AppList: a list of the custom app loop (Array of String)
+- icon: iconID from AWTRIXER (optional)
+
+``` JSON
+{"AppList":["Time","Facebook","Time","Instragram"]}
+
+To reset your custom applist, send
+{"AppList":"reset"} 
+```
+___
 ### Get basic informations
 
 MQTT publish the information to the topic "[prefix]/response"
@@ -172,14 +159,18 @@ MQTT publish the information to the topic "[prefix]/response"
 #### Values
 - installedApps:  
   - returns all installed Apps
-- activeApps:  
-  - returns all active Apps
+- AppList:  
+  - returns the complete apploop
 - settings:       
   - returns all Settings
 - version:        
   - returns AWTRIX version
 - uptime:         
   - returns AWTRIXs uptime
+- powerState:
+  -returns true or false
+- log
+  - returns the Log
 - matrixInfo:     
   - returns all informations from the connected Matrix
 
