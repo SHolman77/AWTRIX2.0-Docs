@@ -11,7 +11,12 @@ AWTRIX 2.0 (AWesome maTRIX) is an DIY intelligent clock (similar to Lametric tim
 <iframe width="560" height="315" src="https://youtube.com/embed/MgdMpw16RnM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
 
 
-AWTRIX 2.0 consists of a ESP8266 as Matrix Driver (AWTRIX Controller) for the 32×8 full color RGB matrix, and any Java capable Server like Windows, MacOS, Raspberry Pi, etc. The Server takes over the complete logic while the ESP takes over the commands and displays them stubbornly.
+**Review from a AWTRIX user**
+<iframe width="560" height="315" src="https://youtube.com/embed/MgdMpw16RnM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
+
+AWTRIX 2.0 is completely free to use. Some premium functions will be available later in a cheap subscription. Until then this can also be used free of charge.
+
+AWTRIX 2.0 consists of a ESP8266 as Matrix Driver (AWTRIX Controller) for the 32ï¿½8 full color RGB matrix, and any Java capable Server like Windows, MacOS, Raspberry Pi, etc. The Server takes over the complete logic while the ESP takes over the commands and displays them stubbornly.
 
 AWTRIX 2.0 is completely free to use. Some premium functions will be available later in a cheap subscription. Until then this can also be used free of charge.
 
@@ -38,15 +43,13 @@ AWTRIX 2.0 is completely free to use. Some premium functions will be available l
 **Example of the powerful drawing API:**
 
 <iframe width="560" height="315" src="https://youtube.com/embed/BfqCBOx3_qQ?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
-  
-  
+
+
 [**You will find all available Apps here**](https://awtrix.blueforcer.de/apps.html)
 
-  
-  
-  
+
+
+
 You can also create your own Icons with AWTRIXER! Use it for own Apps or temporary Apps from external Systems like Smarthome!  
 Available for Windows, MacOS, Linux, Android and iOS! You can also upload your Icons for the Community.
 ![AWTRIX 2.0 Webinterface with integrated Appstore](assets/awtrixer.PNG)
-
-
