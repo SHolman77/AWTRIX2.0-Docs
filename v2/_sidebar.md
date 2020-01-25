@@ -15,6 +15,7 @@
     * [API](v2/api)
     * [AWTRIXER](v2/awtrixer)
     * [Cloud](v2/cloud)
+    * [Customize](v2/customize)
     * [Troubleshooting](v2/trouble)
 
 * App Development

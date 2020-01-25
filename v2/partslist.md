@@ -17,3 +17,5 @@
 [LDR GL5528 (optional)](https://www.amazon.de/Qualit%C3%A4t-GL5516-Lichtabh%C3%A4ngige-Widerstand-Fotowiderstand/dp/B00NXW9WZ6/)
 
 [APDS-9960 (optional)](https://www.banggood.com/APDS-9960-DIY-3_3V-Mall-RGB-Gesture-Sensor-For-Arduino-I2C-Interface-Detection-Range-10-20cm-p-1214027.html)
+
+[DF Mini Player (optional)](https://www.banggood.com/Geekcreit-DFPlayer-Mini-MP3-Player-Module-MP3-Voice-Audio-Decoder-Board-For-Arduino-Supporting-TF-Card-U-Disk-IOSerial-PortAD-p-969191.html?akmClientCountry=DE&&cur_warehouse=UK)

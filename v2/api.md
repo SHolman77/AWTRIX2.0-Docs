@@ -7,7 +7,8 @@ For the REST API the base endpoint is
 **http://[AWTRIX-SERVER_IP]:7000/api/v3**  
 
 e.g. for a simple test on Raspberry Pi curl can be used to submit a http request:  
-```curl http://[AWTRIX-SERVER_IP]:7000/api/v3 -H 'Content-Type: application/json' -d"{"power": true}"```  
+
+```curl --header "Content-Type: application/json" --request POST --data {"power": false} http://[AWTRIX-SERVER_IP]:7000/api/v3/basics ```
 
 ## Basic Controls
 
@@ -26,7 +27,7 @@ ___
 ___
 
 ### power
-Turn AWTRIX On (true) or Off (false)
+Turns AWTRIX On (true) or Off (false)
 
 ``` JSON
 {"power": true}
@@ -41,13 +42,13 @@ Switch to the defined App
 - switchTo: Appname
 
 ``` JSON
-{"switchTo":"facebook"}
+{"switchTo":"Facebook"}
 ```
 ___
 
 ### Appstate
 
-disables/enables an app
+Disables/enables an app
 
 **Params**  
 - enable: Appname
@@ -67,58 +68,46 @@ Controls the Apploop
   - "next" : next App
   - "back" : previous App
   - "pause" : pause the Apploop (toggle)
+  - "hold" : hold the current App without switching (toggle)
 
 ``` JSON
 {"app":"next"}
 ```
 ___
-### msgShort
 
-scrolls the given text once
+### showAnimation
 
-**Params**  
-- msgShort: Textstring
+Shows a random animation, downloaded from AWTRIX cloud
 
-``` JSON
-{"msgShort":"Hello World"}
-```
-___
-### msgEndless
-
-scrolls the given text endless
-
-**Params**  
-- msgEndless: Textstring
+**Params** 
+- showAnimation
 
 ``` JSON
-{"msgEndless":"Hello World"}
-```
-___
-### msgColor
-
-Changes the color of the scrolling Text
-
-**Params**  
-- msgColor: Array of Integer [R,G,B]
-
-``` JSON
-{"msgColor":[255,0,0]}
-```
-
-___
-### msgStop
-
-stop message scrolling
-
-``` JSON
-{"msgStop":true}
+{"showAnimation":"random"}
 ```
 ___
 
+### play
+
+Plays an audiofile which was loaded on the SD-card of the DF Player.
+
+**Params** 
+- play: Array of integers [folder,file,volume] 
+
+``` JSON
+{"play":[1,1,20]}
+```
+the MP3 files need to copy as follow:  
+Folder Name(1-99); File Name(1-255)  
+e.g  
+Folder:15; File:4  
+=  
+SD:/15/004.mp3  
 ___
+
 ### timer
 
-starts a timer for the given timespan and shows an alert when the time has expired.
+Starts a timer for the given timespan and shows an alert when the time has expired.
 
 **Params** 
 - timer: timespan in ```"hours:minutes:seconds"``` 
@@ -132,7 +121,37 @@ starts a timer for the given timespan and shows an alert when the time has expir
 {"timer":"stop"} removes the timer
 ```
 ___
+### stopwatch
 
+Starts a stopwatch with predefined icon. While running AWTRIX doesnt accept anything else.
+You can define a custom icon. If the stopwatch reaches 1 hour it will remove the icon for more space for the hour digits
+
+**Params** 
+- stopwatch: start/stop the stopwatch
+- icon: iconID from AWTRIXER (optional)
+
+``` JSON
+{"stopwatch":true, "icon":423}
+
+{"stopwatch":false} 
+```
+___
+
+### AppList
+
+This API let you customize your App Loop
+
+**Params** 
+- AppList: a list of the custom app loop (Array of String)
+- icon: iconID from AWTRIXER (optional)
+
+``` JSON
+{"AppList":["Time","Facebook","Time","Instragram"]}
+
+To reset your custom applist, send
+{"AppList":"reset"} 
+```
+___
 ### Get basic informations
 
 MQTT publish the information to the topic "[prefix]/response"
@@ -140,14 +159,18 @@ MQTT publish the information to the topic "[prefix]/response"
 #### Values
 - installedApps:  
   - returns all installed Apps
-- activeApps:  
-  - returns all active Apps
+- AppList:  
+  - returns the complete apploop
 - settings:       
   - returns all Settings
 - version:        
   - returns AWTRIX version
 - uptime:         
   - returns AWTRIXs uptime
+- powerState:
+  -returns true or false
+- log
+  - returns the Log
 - matrixInfo:     
   - returns all informations from the connected Matrix
 
@@ -162,7 +185,7 @@ ___
 ## Change Settings
 
 All settings can be changed here.
-As key the same keys are used as they can be found under system settings.
+As key the same are used as they can be found under system settings.
 all values are Strings
 
 ### Endpoint
@@ -184,7 +207,7 @@ ___
 Set one or more settings
 
 ``` JSON
-{"brightness":100}
+{"Brightness":100}
 ```
 
 ___
@@ -213,7 +236,9 @@ You can set predefined Icons uploaded with [AWTRIXER](https://blueforcer.de/down
 **Params**  
 - force
   - Whether the given informations should be displayed immediately or after the current app (true/false).
-  if set to false the given AppInformations are sorted into a Appqueue. After the current App, AWTRIX will show and delete all apps of the Appqueue one by one. So you are able to send many temporary apps at once. If there are no more apps in the queue, AWTRIX will continue to run its own apps.
+  if set to false the given AppInformations are sorted into an Appqueue. After the current App, AWTRIX will show and delete all apps of the Appqueue one by one. So you are able to send many temporary apps at once. If there are no more apps in the queue, AWTRIX will continue to run its own apps.
+- name (optional)
+  - identifier for your temporary App
 - text
   - Text to be displayed (string)
 - icon (optional)
@@ -224,10 +249,17 @@ You can set predefined Icons uploaded with [AWTRIXER](https://blueforcer.de/down
   - Moves the Icon out of the screen to free space for text (true/false)
 - count (optional)
   - how many times the text should scroll before switching to the next app. If the text doesnt need to scroll (because of the textlength) it will use the global appduration to switch. (Integer)
-  
+- play (optional) (Array of integers [folder,file,volume])
+  - plays a specific file on the DFPlayer when starting the App
+
   
 ```Example
-{"force":false,"icon":6,"text":"Awtrix","color":[255,0,0]}
+{"name":"test","force":false,"icon":6,"text":"Awtrix","color":[255,0,0]}
+```
+  
+You can remove an temporary App from the Appqueue with the given name  
+```Example
+{"remove":"test"}
 ```
 
 ___
@@ -330,57 +362,57 @@ The following example is structured as follows:
 ```
 
 
-**Possible commands**
+ #### **Possible commands**
 
 ?> The first pixel (upper left corner) has the coordinate [0,0] while the last one (lower right corner) has [31,7]  
 
 **<span style="color:blue">loop</span>** How often the drawing routines should be repeated (optional)
 
-- **<span style="color:blue">text</span>** Displays a Text
+- **<span style="color:blue">text</span>** Displays a Text.
   - string 
   - position 
     - Array of Integer [X,Y]
   - color
     - Array of Integer [R,G,B]
-- **<span style="color:blue">rect</span>** Displays a Rectangle
+- **<span style="color:blue">rect</span>** Displays a Rectangle.
   - position
     - Array of Integer [X,Y]
   - size
     - Array of Integer [Width,Height]
   - color
     - Array of Integer [R,G,B]
-- **<span style="color:blue">line</span>** Displays a Line
+- **<span style="color:blue">line</span>** Displays a Line.
   - start
     - Array of Integer [X0,Y0]
   - end
     - Array of Integer [X1,Y1]
-  - color´
+  - color
     - Array of Integer [R,G,B]
-- **<span style="color:blue">circle</span>** Displays a Circle
+- **<span style="color:blue">circle</span>** Displays a Circle.
   - position
     - Array of Integer [X,Y]
   - radius
     - Integer r
   - color
     - Array of Integer [R,G,B]
-- **<span style="color:blue">pixel</span>**  Displays a single Pixel
+- **<span style="color:blue">pixel</span>**  Displays a single Pixel.
   - position
     - Array of Integer [X,Y]
   - color
     - Array of Integer [R,G,B]
-- **<span style="color:blue">bmp</span>**  Displays a Bitmap
+- **<span style="color:blue">bmp</span>**  Displays a Bitmap.
   - position
     - Array of Integer [X,Y]
   - size
     - Array of Integer [Width,Height]
   - data
     - Array of RGB565 Integer [p0,p1,p2,p3,...]
-- **<span style="color:blue">fill</span>**  Fills the entire Matrix with one Color
+- **<span style="color:blue">fill</span>**  Fills the entire Matrix with one Color.
   - color
     - Array of Integer [R,G,B]
-- **<span style="color:blue">wait</span>** Wait X milliseconds before the next Command
+- **<span style="color:blue">wait</span>** Wait X milliseconds before the next Command.
   - ms
     - Integer ms
-- **<span style="color:blue">show</span>**  Shows all previous commands
-- **<span style="color:blue">clear</span>** Clear the Matrix
-- **<span style="color:blue">exit</span>**  Exit drawing mode and go back to normal state
+- **<span style="color:blue">show</span>**  Shows all previous commands.
+- **<span style="color:blue">clear</span>** Clear the Matrix.
+- **<span style="color:blue">exit</span>**  Exit drawing mode and go back to normal state.

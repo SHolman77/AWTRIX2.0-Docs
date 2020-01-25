@@ -1,4 +1,4 @@
-
+## AXTRIXER  
 
 With AWTRIXER you can create Icons (8x8), images (1x8-8x32) and animations (8x8).
 You can also stream it to the matrix and upload it to the AWTRIX cloud. 
@@ -21,13 +21,14 @@ Please note that the image will be resized to the set size of the matrix.
 
 #### Draw
 - Left mouse click paints the pixel in the selected color.
-- Middle mouse click copies the color of the pixel
-- Right mouse click deletes the pixel
+- Middle mouse click copies the color of the pixel.
+- Right mouse click deletes the pixel.
 
 #### Color selection
 Here you can choose between 120 predefined colors.  
+
 **Custom color:**  
-Here you can select a custom color in the HSB/RGB or Web color space.
+Here you can select a custom color in the HSB/RGB or Web color space.  
 - Use: Uses the selected color directly for drawing in the matrix.
 - Save: Saves the selected color in the color selection under Custom Color until you close the AWTRIXER.
 
@@ -50,7 +51,7 @@ Here you can create animations based on the set dimensions of the matrix and the
 - **Delete:** Deletes the selected frame.
 
 - **Export for Drawing API:** Exports the animation (with the current settings) for further use via MQTT/Rest API, 
-as animation.json in the start directory or as content in the clipboard
+as animation.json in the start directory or as content in the clipboard.
         
 - **Speed:** Here you can set the frame rate of the animation between min.60ms and max 2000ms.
 
@@ -58,15 +59,14 @@ as animation.json in the start directory or as content in the clipboard
 
 
 ## Database
-Here you can find all uploaded Icons/Animations with the corresponding IconID.
-After selecting an icon, it can also be copied to the Creator (except animations).
+Here you can find all uploaded Icons/Animations with the corresponding IconID.  
+After selecting an icon, it can also be copied to the Creator (except animations).  
 If live drawing is activated, the icons of the database can also be displayed directly on the AWTRIX.
 
 ## AWTRIXER mobile
 
-AWTRIXER is also [available](https://blueforcer.de/download/) for Android and iOS.
-The mobile version is limited to creating static 8x8 Icons  
+AWTRIXER is also [available](https://blueforcer.de/download/) for Android and iOS.  
+The mobile version is limited to creating static 8x8 Icons.  
   
 ![image alt text](assets/ios.png)
-
 

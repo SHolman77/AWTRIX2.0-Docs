@@ -6,10 +6,12 @@ I have designed the AWTRIX Cloud with security in mind. When you activate the ne
 
 
 ## How it works
-If you enable the cloud functionality AWTRIX will connect to the cloud server(the server is completely self written, I don't use any third party cloudsoftware).
-After the successful connection, AWTRIX generates its own token and sends it to the server for login. This connection is then assigned to the token. It is not possible to access other connections because each one is instantiated as a separate thread.
-A post request to the AWTRIX cloud with the own token forwards the message to the linked connection. If the token is not found, the request runs empty and will not be processed.
-At any time you have the possibility to regenerate the token.
+If you enable the cloud functionality AWTRIX will connect to the cloud server (the server is completely self-written, I don't use any third party cloud software).
+After the successful connection, AWTRIX generates its own token and sends it to the server for login. This connection is then assigned to the token. It is not possible to access other connections because each one is instantiated as a separate thread.  
+
+A post request to the AWTRIX cloud with the own token forwards the message to the linked connection. If the token is not found, the request runs empty and will not be processed.  
+
+At any time you have the possibility to regenerate the token.  
 
 
 ## Getting started
@@ -26,6 +28,6 @@ The mode is the same as in the API (draw, basics, app, settings)
 
 As a body just send the same JSONs as for MQTT or WebAPI.
 
-For example in IFTTT its quiet simple to display an Whatsapp notification on AWTRIX:  
+For example in IFTTT https://ifttt.com/ its quiet simple to display an Whatsapp notification on AWTRIX:  
   
 ![image alt text](assets/ifttt.png)

@@ -16,16 +16,17 @@ Unzip the ZIP file with a suitable unpacker and open the folder in Visual Studio
 
 ## **Setup**
 
-Before flashing the Firmware, open **awtrix-conf.h** and edit your wifi credentials and set the IP from the Server wich should run the serverapplication.  If you using a LDR for automatic brightness control, you also need to modify the LDR section. if not, just ignore it.
-If you want to use Gesture Control with the APDS-9960 Sensor, Set GESTURE to true  
-![image alt text](assets/config.png)
+Before flashing the Firmware, open **\src\awtrix-conf.h** and edit your wifi credentials and set the IP from the Server wich should run the serverapplication.  If you using a LDR for automatic brightness control, you also need to modify the LDR section. if not, just ignore it.
 
  Then simply flash the firmware. In VSC, this is done in the blue line at the bottom of the window:  
 
 ![image alt text](assets/image_2.png)
 
 ## **OTA(Over the air) Update**
-AWTRIXController supports over-the-air updates. PlatformIO Terminal:  
-(Replace IP of the AWTRIX controller)  
-```platformio run -t upload --upload-port 192.168.178.96```
-Please note: First OTA only works after ESP reset
+AWTRIX Controller supports over-the-air updates. 
+PlatformIO Terminal:  
+(Replace IP in below command line with your own IP of the AWTRIX controller)  
+```platformio run -t upload --upload-port 192.168.178.96```  
+Please note: First OTA only works after ESP reset  
+
+![image alt text](assets/OTA_update_AWTRIXController.jpg)  
